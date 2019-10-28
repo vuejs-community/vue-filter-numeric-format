@@ -14,27 +14,33 @@ const defaultConfig: INumericFormatConfig = {
   thousandsDigitsSeparator: ' '
 };
 
-export const numericFormat = (
-  input: number,
-  config: INumericFormatConfig = {}
-): string => {
+const getIntFragment = (input: number, separator: string): string => {
+  return Math
+    .floor(input)
+    .toString()
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${separator}`);
+};
+
+const getFloatFragment = (input: number, separator: string, min: number, max: number): string => {
+  const float = parseFloat(`0.${(input.toString().split('.')[1] || '').slice(0, max)})`);
+
+  return float
+    .toString()
+    .substring(2)
+    .padEnd(min, '0')
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${separator}`);
+};
+
+export const numericFormat = (input: number, config: INumericFormatConfig = {}): string => {
   config = { ...defaultConfig, ...config };
 
-  const intFragment = input
-    .toFixed(0)
-    .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${config.thousandsDigitsSeparator}`);
+  const intFragment = getIntFragment(input, config.thousandsDigitsSeparator);
 
   if (config.fractionDigitsMax === 0) {
     return intFragment;
   }
 
-  const float = parseFloat(`0.${(input.toString().split('.')[1] || '').slice(0, config.fractionDigitsMax)})`);
-  const floatFragment = float
-    .toString()
-    .substring(2)
-    .padEnd(config.fractionDigitsMin, '0')
-    .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${config.fractionDigitsSeparator}`);
-
+  const floatFragment = getFloatFragment(input, config.fractionDigitsSeparator, config.fractionDigitsMin, config.fractionDigitsMax);
   if (floatFragment.length === 0) {
     return intFragment;
   }
