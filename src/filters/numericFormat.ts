@@ -6,14 +6,6 @@ export interface INumericFormatConfig {
   thousandsDigitsSeparator?: string;
 }
 
-const defaultConfig: INumericFormatConfig = {
-  decimalSeparator: ',',
-  fractionDigitsMax: 2,
-  fractionDigitsMin: 2,
-  fractionDigitsSeparator: '',
-  thousandsDigitsSeparator: ' '
-};
-
 const getIntFragment = (input: number, separator: string): string => {
   return Math
     .floor(input)
@@ -32,18 +24,24 @@ const getFloatFragment = (input: number, separator: string, min: number, max: nu
 };
 
 export const numericFormat = (input: number, config: INumericFormatConfig = {}): string => {
-  config = { ...defaultConfig, ...config };
+  const {
+    decimalSeparator = ',',
+    fractionDigitsMax = 2,
+    fractionDigitsMin = 2,
+    fractionDigitsSeparator = '',
+    thousandsDigitsSeparator = ' '
+  } = config;
 
-  const intFragment = getIntFragment(input, config.thousandsDigitsSeparator);
+  const intFragment = getIntFragment(input, thousandsDigitsSeparator);
 
-  if (config.fractionDigitsMax === 0) {
+  if (fractionDigitsMax === 0) {
     return intFragment;
   }
 
-  const floatFragment = getFloatFragment(input, config.fractionDigitsSeparator, config.fractionDigitsMin, config.fractionDigitsMax);
+  const floatFragment = getFloatFragment(input, fractionDigitsSeparator, fractionDigitsMin, fractionDigitsMax);
   if (floatFragment.length === 0) {
     return intFragment;
   }
 
-  return `${intFragment}${config.decimalSeparator}${floatFragment}`;
+  return `${intFragment}${decimalSeparator}${floatFragment}`;
 };
