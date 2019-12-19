@@ -8,7 +8,7 @@ export interface INumericFormatConfig {
 
 const getIntFragment = (input: number, separator: string): string => {
   return Math
-    .floor(input)
+    .trunc(input)
     .toString()
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${separator}`);
 };

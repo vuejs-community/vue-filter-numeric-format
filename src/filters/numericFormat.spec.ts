@@ -34,4 +34,6 @@ test('1000000.01 => 1 000 000,01', macro, 1000000.01, numericFormatConfig1, '1 0
 
 test('1000000.67 => 1 000 000,67', macro, 1000000.67, numericFormatConfig1, '1 000 000,67');
 
+test('-1000000.67 => -1 000 000,67', macro, -1000000.67, numericFormatConfig1, '-1 000 000,67');
+
 test('1000000.001 => 1 000 000,00', macro, 1000000.001, numericFormatConfig1, '1 000 000,00');
