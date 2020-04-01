@@ -1,23 +1,23 @@
-# vue-filter-numeric-format
+# @vuejs-community/vue-filter-numeric-format
 Simple numeric filter for Vue.js
 
 ## Installation
 
 install from npm
 ```bash
-$ npm install vue-filter-numeric-format
+$ npm install @vuejs-community/vue-filter-numeric-format
 ```
 and register in you Vue app
 ```js
 import Vue from 'vue';
-import VueFilterNumericFormat from 'vue-filter-numeric-format';
+import VueFilterNumericFormat from '@vuejs-community/vue-filter-numeric-format';
 
 Vue.use(VueFilterNumericFormat);
 ```
 or register in you Vue app with config
 ```js
 import Vue from 'vue';
-import VueFilterNumericFormat from 'vue-filter-numeric-format';
+import VueFilterNumericFormat from '@vuejs-community/vue-filter-numeric-format';
 
 Vue.use(VueFilterNumericFormat, {
   decimalSeparator: ',',
@@ -62,4 +62,4 @@ usage with config
 
 ## License
 
-MIT © [Ed Nikolenko](https://github.com/ednikolenko)
+MIT © [Vue.js Community](https://github.com/vuejs-community)
