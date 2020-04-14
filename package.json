@@ -10,7 +10,7 @@
   "author": "Eduard Nikolenko <mail@eduardnikolenko.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduardnikolenko/vue-filter-numeric-format.git"
+    "url": "git+https://github.com/vuejs-community/vue-filter-numeric-format.git"
   },
   "files": [
     "dist/vue-filter-numeric-format.cjs.d.ts",
