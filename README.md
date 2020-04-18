@@ -4,7 +4,7 @@ Simple numeric filter for Vue.js
 [![NPM Version](https://img.shields.io/npm/v/vue-filter-numeric-format.svg)](https://www.npmjs.com/package/vue-filter-numeric-format)
 [![License](https://img.shields.io/npm/l/vue-filter-numeric-format.svg)](/LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/vue-filter-numeric-format.svg)](https://npmcharts.com/compare/vue-filter-numeric-format?minimal=true)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=eduardnikolenko/vue-filter-numeric-format)](https://dependabot.com)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=vuejs-community/vue-filter-numeric-format)](https://dependabot.com)
 [![Wallaby.js](https://img.shields.io/badge/wallaby.js-configured-green.svg)](https://wallabyjs.com)
 
 ## Installation
