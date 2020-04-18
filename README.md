@@ -68,4 +68,4 @@ usage with config
 
 ## License
 
-MIT © [Eduard Nikolenko](https://github.com/eduardnikolenko)
+MIT © [Vue.js Community](https://github.com/vuejs-community)
