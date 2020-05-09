@@ -1,3 +1,7 @@
+import { VueConstructor } from 'vue';
+
+import { version } from '../package.json';
+
 export interface INumericFormatConfig {
   decimalSeparator?: string;
   fractionDigitsMax?: number;
@@ -6,14 +10,14 @@ export interface INumericFormatConfig {
   thousandsDigitsSeparator?: string;
 }
 
-const getIntFragment = (input: number, separator: string): string => {
+function getIntFragment(input: number, separator: string): string {
   return Math
     .trunc(input)
     .toString()
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${separator}`);
-};
+}
 
-const getFloatFragment = (input: number, separator: string, min: number, max: number): string => {
+function getFloatFragment(input: number, separator: string, min: number, max: number): string {
   const float = parseFloat(`0.${(input.toString().split('.')[1] || '').slice(0, max)})`);
 
   return float
@@ -21,9 +25,9 @@ const getFloatFragment = (input: number, separator: string, min: number, max: nu
     .substring(2)
     .padEnd(min, '0')
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${separator}`);
-};
+}
 
-export const numericFormat = (input: number, config: INumericFormatConfig = {}): string => {
+export function numericFormat(input: number, config: INumericFormatConfig = {}): string {
   const {
     decimalSeparator = ',',
     fractionDigitsMax = 2,
@@ -44,4 +48,13 @@ export const numericFormat = (input: number, config: INumericFormatConfig = {}):
   }
 
   return `${intFragment}${decimalSeparator}${floatFragment}`;
+}
+
+export default {
+  install(Vue: VueConstructor, baseConfig: INumericFormatConfig): void {
+    Vue.filter('numericFormat', (input: number, config: INumericFormatConfig = {}) => {
+      return numericFormat(input, { ...baseConfig, ...config });
+    });
+  },
+  version
 };

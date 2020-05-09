@@ -1,5 +1,6 @@
 import ava, { TestInterface } from 'ava';
-import { INumericFormatConfig, numericFormat } from './numericFormat';
+
+import { INumericFormatConfig, numericFormat } from './vue-filter-numeric-format';
 
 const test = ava as TestInterface<{}>;
 
