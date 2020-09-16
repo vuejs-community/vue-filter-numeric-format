@@ -1,6 +1,7 @@
 import { VueConstructor } from 'vue';
-import { version } from '../package.json';
+
 import { INumericFormatConfig } from './interfaces/i-numeric-format-config';
+import { version } from '../package.json';
 
 const getIntFragment = (input: number, separator: string): string => {
   return Math
