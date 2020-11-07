@@ -16,7 +16,9 @@
     "dist/vue-filter-numeric-format.cjs.d.ts",
     "dist/vue-filter-numeric-format.cjs.js",
     "dist/vue-filter-numeric-format.esm.d.ts",
-    "dist/vue-filter-numeric-format.esm.js"
+    "dist/vue-filter-numeric-format.esm.js",
+    "dist/vue-filter-numeric-format.umd.d.ts",
+    "dist/vue-filter-numeric-format.umd.js"
   ],
   "main": "dist/vue-filter-numeric-format.cjs.js",
   "module": "dist/vue-filter-numeric-format.esm.js",
