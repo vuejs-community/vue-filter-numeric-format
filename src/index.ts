@@ -1,7 +1,8 @@
-import { VueConstructor } from 'vue';
+import { INumericFormatConfig } from './interfaces/i-numeric-format-config.ts';
 
-import { INumericFormatConfig } from './interfaces/i-numeric-format-config';
-import { version } from '../package.json';
+type VueConstructor = {
+  filter(id: string, definition?: Function): Function;
+};
 
 const getIntFragment = (input: number, separator: string): string => {
   return Math
@@ -47,6 +48,5 @@ export default {
     Vue.filter('numericFormat', (input: number, config: INumericFormatConfig = {}) => {
       return numericFormat(input, { ...baseConfig, ...config });
     });
-  },
-  version
+  }
 };

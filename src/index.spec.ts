@@ -1,41 +1,82 @@
-import ava, { TestInterface } from 'ava';
+import { describe, expect, it } from 'vitest';
 
-import { INumericFormatConfig } from './interfaces/i-numeric-format-config';
-import { numericFormat } from './index';
+import { numericFormat } from './index.ts';
 
-const test = ava as TestInterface<{}>;
+describe('numericFormat', () => {
+  it('1000000 => 1 000 000,00', () => {
+    const numericString = numericFormat(1000000, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 2,
+      thousandsDigitsSeparator: ' '
+    });
 
-const macro = (t, input: number, config: INumericFormatConfig, expected: string) => {
-  t.is(numericFormat(input, config), expected);
-};
+    expect(numericString).toBe('1 000 000,00');
+  });
 
-const numericFormatConfig1: INumericFormatConfig = {
-  decimalSeparator: ',',
-  fractionDigitsMax: 2,
-  fractionDigitsMin: 2,
-  thousandsDigitsSeparator: ' '
-};
+  it('1000000 => 1 000 000 test fractionDigitsMin = 0', () => {
+    const numericString = numericFormat(1000000, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 0,
+      thousandsDigitsSeparator: ' '
+    });
 
-const numericFormatConfig2: INumericFormatConfig = {
-  ...numericFormatConfig1,
-  fractionDigitsMin: 0
-};
+    expect(numericString).toBe('1 000 000');
+  });
 
-const numericFormatConfig3: INumericFormatConfig = {
-  ...numericFormatConfig1,
-  fractionDigitsMax: 0
-};
+  it('1000000 => 1 000 000 test fractionDigitsMax = 0', () => {
+    const numericString = numericFormat(1000000, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 0,
+      fractionDigitsMin: 0,
+      thousandsDigitsSeparator: ' '
+    });
 
-test('1000000 => 1 000 000,00', macro, 1000000, numericFormatConfig1, '1 000 000,00');
+    expect(numericString).toBe('1 000 000');
+  });
 
-test('1000000 => 1 000 000 test fractionDigitsMin = 0', macro, 1000000, numericFormatConfig2, '1 000 000');
+  it('1000000.01 => 1 000 000,01', () => {
+    const numericString = numericFormat(1000000.01, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 2,
+      thousandsDigitsSeparator: ' '
+    });
 
-test('1000000 => 1 000 000 test fractionDigitsMax = 0', macro, 1000000, numericFormatConfig3, '1 000 000');
+    expect(numericString).toBe('1 000 000,01');
+  });
 
-test('1000000.01 => 1 000 000,01', macro, 1000000.01, numericFormatConfig1, '1 000 000,01');
+  it('1000000.67 => 1 000 000,67', () => {
+    const numericString = numericFormat(1000000.67, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 2,
+      thousandsDigitsSeparator: ' '
+    });
 
-test('1000000.67 => 1 000 000,67', macro, 1000000.67, numericFormatConfig1, '1 000 000,67');
+    expect(numericString).toBe('1 000 000,67');
+  });
 
-test('-1000000.67 => -1 000 000,67', macro, -1000000.67, numericFormatConfig1, '-1 000 000,67');
+  it('-1000000.67 => -1 000 000,67', () => {
+    const numericString = numericFormat(-1000000.67, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 2,
+      thousandsDigitsSeparator: ' '
+    });
 
-test('1000000.001 => 1 000 000,00', macro, 1000000.001, numericFormatConfig1, '1 000 000,00');
+    expect(numericString).toBe('-1 000 000,67');
+  });
+
+  it('1000000.001 => 1 000 000,00', () => {
+    const numericString = numericFormat(1000000.001, {
+      decimalSeparator: ',',
+      fractionDigitsMax: 2,
+      fractionDigitsMin: 2,
+      thousandsDigitsSeparator: ' '
+    });
+
+    expect(numericString).toBe('1 000 000,00');
+  });
+});
